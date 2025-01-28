@@ -13,7 +13,7 @@ logsource:
 detection:
     selection:
         EventID: 4719
-                -4720
+                or 4720
         Provider_Name: Microsoft-Windows-Eventlog
         Security_ID!="NT AUTHORITY\SYSTEM"
 falsepositives:
