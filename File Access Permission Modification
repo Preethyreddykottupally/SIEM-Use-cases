@@ -1,0 +1,21 @@
+title: Windows File and Directory Permissions Modification
+description: Checks for event id 4670 and 4719 that detects processes that  modify File and Directory permissions
+references:
+- https://attack.mitre.org/techniques/T1222/001/
+
+author: Preethyreddyk
+date: 2025-01-27
+tags:
+    - attack.t1222.001
+logsource:
+    service: security
+    product: windows
+detection:
+    selection:
+        EventID: 4719
+                -4720
+        Provider_Name: Microsoft-Windows-Eventlog
+        Security_ID!="NT AUTHORITY\SYSTEM"
+falsepositives:
+    - NO Konwn False positives
+level: medium
