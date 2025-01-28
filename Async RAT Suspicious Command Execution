@@ -1,0 +1,27 @@
+title: AsyncRAT Suspcious Windows Command Execution
+description: Async RAT like any other Remote access trojans (RATs) is a type of malware that enables attackers to establish complete to partial control over infected computers
+references:
+    -  https://thehackernews.com/2025/01/top-5-malware-threats-to-prepare.html
+    -  https://app.any.run/tasks/7a926c1c-53ae-4dbd-889b-3289586b3b96?utm_source=the_hacker_news&utm_medium=article&utm_campaign=top_5_malware_threats&utm_content=task&utm_term=080125
+    
+author: preethyreddyk
+date: 2025-01-27
+modified: 2023-03-14
+tags:
+    - attack. Execution
+    - attack.T1204.002
+    - detection.threat-hunting
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_img:
+        - Image|endswith: '\cmd.exe' or '\powershell.exe'
+        - OriginalFileName: 'cmd.exe' or 'powershell.exe'
+    selection_cli:
+        CommandLine|contains: 'Swiftwrite.url'
+        - 'Swiftwrite.js'
+    condition: any of selection_*
+falsepositives:
+    - Unknown
+level: low#
